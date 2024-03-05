@@ -1,0 +1,17 @@
+/* button.css */
+.add-image-button {
+    /* Gaya lainnya tetap sama */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Opsi: column atau row, sesuaikan dengan preferensi Anda */
+    height: 60px; /* Sesuaikan tinggi tombol sesuai kebutuhan Anda */
+    width: 60px; /* Sesuaikan lebar tombol sesuai kebutuhan Anda */
+  }
+  
+  .button-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  
