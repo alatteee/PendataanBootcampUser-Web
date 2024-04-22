@@ -1,3 +1,5 @@
+//changePassword
+
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
@@ -9,9 +11,11 @@ import { HiEye, HiEyeOff } from "react-icons/hi";
 const TabContent2 = ({ id }) => {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [showPassword3, setShowPassword3] = useState(false); 
 
   const togglePassword1 = () => setShowPassword1((prev) => !prev);
   const togglePassword2 = () => setShowPassword2((prev) => !prev);
+  const togglePassword3 = () => setShowPassword3((prev) => !prev); 
 
   const { refetch: refetchCurrentUserData } = useQuery(
     ["currentUserData", id],
@@ -53,29 +57,39 @@ const TabContent2 = ({ id }) => {
   });
 
   const updateUserPassword = (data) => {
-    Swal.fire({
-      title: "Are you sure want to reset this password?",
-      showDenyButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`,
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Saving...",
-          didOpen: () => {
-            // Handle saving logic here
-            handleUpdatePassword.mutate(data);
-          },
-        });
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
-      }
-    });
+    // Cek apakah formulir valid
+    if (Object.keys(errors).length > 0) {
+      // Jika formulir tidak valid, tampilkan pesan kesalahan atau peringatan
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Please fill out all required fields.",
+      });
+    } else {
+      // Jika formulir valid, lanjutkan dengan proses pengubahan kata sandi
+      Swal.fire({
+        title: "Are you sure want to reset this password?",
+        showDenyButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Saving...",
+            didOpen: () => {
+              // Handle saving logic here
+              handleUpdatePassword.mutate(data);
+            },
+          });
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+    }
   };
 
-  const toggleCurrentPassword = () => setShowPassword1((prev) => !prev);
-  const toggleNewPassword = () => setShowPassword2((prev) => !prev);
+  // const toggleCurrentPassword = () => setShowPassword1((prev) => !prev);
+  // const toggleNewPassword = () => setShowPassword2((prev) => !prev);
 
   return (
     <div className="p-4 sm:p-6 md:p-8 lg:p-10">
@@ -105,13 +119,14 @@ const TabContent2 = ({ id }) => {
                     required: true,
                     minLength: {
                       value: 8,
-                      message: "Current password must contain min 8 characters!",
+                      message:
+                        "Current password must contain min 8 characters!",
                     },
                   })}
                 />
                 <button
                   type="button"
-                  onClick={toggleCurrentPassword}
+                  onClick={togglePassword1}
                   className="absolute top-1/2 -translate-y-1/2 right-3"
                 >
                   {showPassword1 ? (
@@ -176,7 +191,7 @@ const TabContent2 = ({ id }) => {
               <div className="relative">
                 <input
                   id="confPassword"
-                  type={showPassword2 ? "text" : "password"}
+                  type={showPassword3 ? "text" : "password"}
                   placeholder="Confirm your new password"
                   className={`py-2 px-4 w-full rounded border ${
                     errors.confPassword && "border-red-500"
@@ -200,10 +215,10 @@ const TabContent2 = ({ id }) => {
                 />
                 <button
                   type="button"
-                  onClick={togglePassword2}
-                  className="absolute top-1/2 -translate-y-1/2 right-3"
+                  onClick={togglePassword3}
+                  className="absolute top-1/2 -translate-y-1/2 right-3" 
                 >
-                  {showPassword2 ? (
+                  {showPassword3 ? (
                     <HiEyeOff className="text-xl text-gray-500 hover:text-gray-600" />
                   ) : (
                     <HiEye className="text-xl text-gray-500 hover:text-gray-600" />

@@ -5,8 +5,6 @@ import {
   useNavigate,
   useNavigation,
 } from "react-router-dom";
-import WgsBootcamp from "@/assets/reate.png";
-import WgsLogo from "@/assets/logo_wgs_full.svg";
 import { useMutation, useQuery } from "react-query";
 import { navigation } from "./NavigationItem";
 import { LiaTimesSolid } from "react-icons/lia";
@@ -42,15 +40,15 @@ export default function Sidebar({ children }) {
           className="drawer-overlay"
         ></label>
         <div className="flex flex-col p-4 w-full sm:w-80 h-[100%] bg-[#06476F] text-base-content">
-          <div className="h-[10%] mb-2 mt-4 flex items-center justify-between lg:justify-center">
+          <div className="h-32 mb-2 mt-4 flex items-center justify-between lg:justify-center">
             <div>
-              <div>
+              <div className="flex w-36 h-auto">
                 <img
                   src={`${import.meta.env?.VITE_IMAGE_HOST?.replace(
                     /\/$/,
                     ""
                   )}/${userContent?.contents?.image_logo_user}`}
-                  className="w-40"
+                  className="w-full"
                   alt=""
                 />
               </div>

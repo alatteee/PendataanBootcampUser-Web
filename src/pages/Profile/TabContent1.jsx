@@ -116,7 +116,7 @@ const TabContent1 = ({ id }) => {
           />
         </figure>
         <div className="card-body">
-          <h4 className="font-semibold">Name :</h4>
+          <h4 className="font-semibold">Nama :</h4>
           <p>{dataIdCurrentUser?.nama_peserta}</p>
           <h4 className="font-semibold">Jenis Kelamin :</h4>
           <p>{dataIdCurrentUser?.jenis_kelamin}</p>

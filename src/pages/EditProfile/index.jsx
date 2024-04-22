@@ -124,58 +124,38 @@ const EditProfile = () => {
       <h1 className="font-bold text-5xl mt-7 ml-5">Edit Your Profile</h1>
 
       <FormProvider {...useForm}>
-        <div className="card card-side bg-base-100 shadow-xl mt-6 ml-9 mr-9 mb-9">
-          <div className="image-container h-fit relative px-4 py-9">
-            <figure className="w-fit h-fit">
+        <div className="card lg:card-side bg-base-100 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 ml-14 mr-14 mb-20">
+          <div className="relative">
+            <figure className="mb-4 mt-12">
               <img
                 id="user-image"
                 src={`${import.meta.env?.VITE_IMAGE_HOST?.replace(/\/$/, "")}/${
                   dataIdCurrentUser?.url
                 }`}
                 alt="User"
-                style={{ width: "300px", height: "350px" }}
-                className="ml-6"
+                style={{ width: "300px", height: "auto" }}
               />
             </figure>
-            {/* <img
-              id="user-image"
-              src={`${import.meta.env?.VITE_IMAGE_HOST?.replace(/\/$/, "")}/${
-                dataIdCurrentUser?.url
-              }`}
-              alt="User"
-              className="w-64 h-auto ml-5"
-            /> */}
-            <div className="flex flex-col items-center absolute -bottom-3 left-3">
-              <button
-                className=" flex justify-center items-center bg-primary ml-4 shadow-xl rounded-3xl h-10 w-10 text-white mt-2"
-                onClick={handleCameraButtonClick}
-              >
-                <FaCamera />
-              </button>
-              <input
-                type="file"
-                accept="image/*"
-                ref={fileInputRef}
-                className="hidden"
-                onChange={handleFileInputChange}
-              />
+            <div className="flex justify-center mr-64">
+              <div style={{ marginTop: "-10px" }}>
+                <button
+                  className="flex justify-center items-center bg-primary shadow-xl rounded-full h-10 w-10 text-white"
+                  onClick={handleCameraButtonClick}
+                >
+                  <FaCamera />
+                </button>
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  className="hidden"
+                  onChange={handleFileInputChange}
+                />
+              </div>
             </div>
-            {/* <button
-              className="add-image-button bg-primary ml-4 shadow-xl rounded-3xl h-10 w-10 text-white mt-2"
-              onClick={handleCameraButtonClick}
-            >
-              <FaCamera />
-            </button>
-            <input
-              type="file"
-              accept="image/*"
-              ref={fileInputRef}
-              className="hidden"
-              onChange={handleFileInputChange}
-            /> */}
           </div>
 
-          <div className="card-body px-4 py-6">
+          <div className="card-body">
             <div>
               <label
                 htmlFor="nama_peserta"

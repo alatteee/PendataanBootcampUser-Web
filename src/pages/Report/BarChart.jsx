@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import Chart from 'chart.js/auto'; // Impor Chart.js
-import 'chartjs-adapter-date-fns'; // Jika Anda menggunakan tanggal dan waktu
-import 'chartjs-adapter-moment'; // Jika Anda menggunakan moment untuk tanggal dan waktu
+import 'chartjs-adapter-date-fns'; 
+import 'chartjs-adapter-moment'; 
 
 const BarChart = ({ chartData }) => {
   const chartRef = useRef(null);
@@ -9,7 +9,7 @@ const BarChart = ({ chartData }) => {
 
   useEffect(() => {
     if (chartRef && chartRef.current) {
-      // Inisialisasi grafik saat komponen dimuat
+    
       myChart = new Chart(chartRef.current, {
         type: 'bar',
         data: {
@@ -17,9 +17,9 @@ const BarChart = ({ chartData }) => {
           datasets: [{
             label: "Score",
             data: chartData?.map((data) => data.nilai),
-            backgroundColor: 'rgba(6, 71, 111, 0.5)', // Warna sedikit transparan
-            borderColor: 'rgba(6, 71, 111, 0.7)', // Border yang lebih tua
-            borderWidth: 2 // Lebar border
+            backgroundColor: 'rgba(6, 71, 111, 0.5)', //mengatur Warna sedikit transparan
+            borderColor: 'rgba(6, 71, 111, 0.7)', //mengatur Border yang lebih tua
+            borderWidth: 2 
           }]
         },
         options: {
